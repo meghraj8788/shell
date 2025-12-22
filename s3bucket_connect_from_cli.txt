@@ -1,0 +1,30 @@
+to connect S3 bucket with shell or server we need IAM user for connect from sserver to s3 bucket and run command for this we need AWS CLI  
+
+#install AWS CLI to server
+
+  221  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+  222  unzip awscliv2.zip
+  223  sudo ./aws/install
+  224  ls
+  225  sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
+  234  aws --version
+
+configure AWS With server we need iam accwss and secrect key
+which we can crate in aws UI -> while create IAM on permission we can give full access to S3
+
+after createing access key and secrate key for IAM user we can use in aws CLI for aws configure
+
+  
+235  aws configure
+
+now it is connected with aws services 
+now we can sync our dir. or backup or data to s3 bucket so it is stored their
+
+command - aws s3 sync /home/ubuntu/shell s3://shell-backup-8788
+
+/home/ubuntu/shell --> path where data is
+shell-backup-8788 --> S3 bucket name
+
+sync is it will add data not in s3 
+
+
