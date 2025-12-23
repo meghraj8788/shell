@@ -1,0 +1,82 @@
+Sync Linux Server Data to AWS S3 Using Shell & AWS CLI
+
+This guide explains how to connect a Linux server to an AWS S3 bucket using an IAM user and AWS CLI, and how to sync data from the server to S3.
+
+🔐 Prerequisites
+
+To connect a server with an S3 bucket, we need:
+
+An IAM User with S3 permissions
+
+AWS CLI installed on the server
+
+Access Key & Secret Key for authentication
+
+1️⃣ Create IAM User (AWS Console)
+
+Go to AWS Console → IAM
+
+Create a new IAM User
+
+Attach permission policy:
+
+AmazonS3FullAccess (for learning/demo)
+
+Generate:
+
+Access Key
+
+Secret Access Key
+
+⚠️ In production, always use least-privilege policies, not full access.
+
+2️⃣ Install AWS CLI on Linux Server
+
+Run the following commands on the server:
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+
+(Optional update command)
+
+sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
+
+
+Verify installation:
+
+aws --version
+
+3️⃣ Configure AWS CLI
+
+Configure AWS CLI using IAM credentials:
+
+aws configure
+
+
+Enter:
+
+AWS Access Key ID
+
+AWS Secret Access Key
+
+Default region (e.g. ap-south-1)
+
+Output format (json)
+
+Once configured, the server is authenticated with AWS services.
+
+4️⃣ Sync Server Directory to S3 Bucket
+
+Use the following command to sync data:
+
+aws s3 sync /home/ubuntu/shell s3://shell-backup-8788
+
+Explanation:
+
+/home/ubuntu/shell → Local directory on the server
+
+shell-backup-8788 → S3 bucket name
+
+sync → Uploads only new or changed files
