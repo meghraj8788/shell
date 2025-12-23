@@ -4,7 +4,7 @@
 <<info
 
 this is for to function understanding in shell
-
+yoo this is same as other langauge 
 info
 
 
